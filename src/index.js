@@ -9,15 +9,12 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import reducers from './reducers';
 import ReduxPromise from 'redux-promise';
-
-const store = createStore(
-    reducers,
-    applyMiddleware(logger, ReduxPromise)
-);
+const store = createStore(reducers, applyMiddleware(logger, ReduxPromise));
 
 ReactDOM.render(
-    <Provider store={store}>
-        <App />
-    </Provider>
-    , document.getElementById('root'));
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root'),
+);
 registerServiceWorker();
