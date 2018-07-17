@@ -2,6 +2,8 @@ import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 
 import './sign-in-form.css';
+import makeRequest from './actions';
+import { connect } from 'react-redux';
 
 //validations
 const required = (value) => (value ? undefined : 'Required');
@@ -13,12 +15,19 @@ const minLength8 = (value) =>
   value && value.length >= 8
     ? undefined
     : 'password must be atleast eight (8) long';
+
+
 function SignInForm(props) {
-  const { pristine, submitting, handleSubmit, invalid } = props;
+  const { pristine, submitting, handleSubmit, invalid, loading,failure,success } = props;
   console.log(props);
   return (
     <form className="form" onSubmit={handleSubmit}>
-      <div className="field">
+        {loading &&
+          <p class='loading'>loading....</p>
+        }
+        {   failure && 
+          <p class="server-error">{failure}</p>
+        }
         <Field
           className="input"
           name="email"
@@ -28,9 +37,7 @@ function SignInForm(props) {
           placeholder="@"
           validate={[required, email]}
         />
-      </div>
 
-      <div className="field">
         <Field
           className="input"
           name="password"
@@ -40,11 +47,11 @@ function SignInForm(props) {
           placeholder=""
           validate={[minLength8]}
         />
-      </div>
 
       <div className="field">
         <div className="control">
           <button
+          type="submit"
             disabled={pristine || submitting || invalid}
             className="button is-link"
           >
@@ -55,21 +62,33 @@ function SignInForm(props) {
     </form>
   );
 }
-const validate = (values) => {
-  const errors = {};
-  console.log(values);
-  return errors;
-};
-
 const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <div className="control">
-    <label className="label">{label}</label>
+  <div className="field">
+    <label className="label">{label}:</label>
     <div className="control-container">
       <input {...input} placeholder={label} type={type} />
     </div>
-    {touched && (error && <span className="error">{error}</span>)}
+    {touched && (error && <p className="error">{error}</p>)}
   </div>
 );
-export default reduxForm({
+SignInForm = reduxForm({
   form: 'signup',
 })(SignInForm);
+
+const mapStatesWithProps = states =>{
+  return {
+    loading:states.signup.loading,
+    failure:states.signup.failure,
+    success:states.signup.success
+  }
+}
+const mapDispatchWithProps = dispatch=>{
+  return {
+    onSubmit:(values)=>{dispatch(makeRequest(values))}
+ }
+}
+
+export default connect(
+  mapStatesWithProps,
+  mapDispatchWithProps
+)(SignInForm);

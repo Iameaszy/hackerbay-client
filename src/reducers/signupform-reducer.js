@@ -1,17 +1,41 @@
 import {
-  FORM_SUBMIT_SUCCEEDED,
-  FORM_SUBMIT_FAILED,
-} from '../actions/signupform-action';
+  IS_SUCCESS,
+  IS_FAILURE,
+  LOADING
+} from "../actions";
+import {
+  combineReducers
+} from "redux";
 
-const initialState = new Map();
-initialState.set('formHasError', false);
-export default (state = initialState, action) => {
+
+function loading(state=false,action){
+    switch(action.type){
+      case LOADING: return action.state;
+      default: return state;
+    }
+}
+function success(state='', action) {
   switch (action.type) {
-    case FORM_SUBMIT_FAILED:
-      return initialState.set('formHasErrors', true);
-    case FORM_SUBMIT_SUCCEEDED:
-      return initialState.set('formHasErrors', false);
+    case IS_SUCCESS:
+      return action.payload
     default:
       return state;
   }
-};
+}
+
+function failure(state = '', action) {
+  switch (action.type) {
+    case IS_FAILURE:
+      return action.error
+    default:
+      return state;
+  }
+}
+
+const reducers = combineReducers({
+  failure,
+  success,
+  loading
+});
+
+export default reducers;

@@ -1,6 +1,8 @@
 import React from 'react';
+import thunkMiddleware from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import './index.css';
+import makeRequest,{failure, success,loading} from './actions';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -9,8 +11,7 @@ import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 import reducers from './reducers';
 import ReduxPromise from 'redux-promise';
-const store = createStore(reducers, applyMiddleware(logger, ReduxPromise));
-
+const store = createStore(reducers, applyMiddleware(thunkMiddleware,logger, ReduxPromise));
 ReactDOM.render(
   <Provider store={store}>
     <App />

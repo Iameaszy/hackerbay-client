@@ -1,11 +1,44 @@
-export const FETCH_DATA = 'fetch_data';
-// default function to display redux action format
-export function defaultFunction() {
-  let testVar = 'Hello';
+import fetch from 'isomorphic-fetch';
 
-  // action object format being return to a reducer
+
+export const POST = "POST";
+export const IS_SUCCESS = "IS_SUCCESS"
+export const IS_FAILURE = "IS_FAILURE"
+export const LOADING = "LOADING";
+
+
+export function loading(state=false){
   return {
-    type: FETCH_DATA,
-    payload: testVar,
-  };
+    type:LOADING,
+    state
+  }
+}
+export function success(payload) {
+  return {
+    type: IS_SUCCESS,
+    payload
+  }
+}
+
+export function failure(error) {
+  return {
+    type: IS_FAILURE,
+    error
+  }
+}
+
+export default function makeRequest() {
+  return function (dispatch) {
+    dispatch(loading(true));
+
+    fetch('localhost:3000')
+      .then(res => {
+        dispatch(loading(false));
+        dispatch(success(res));
+      }, err => {
+        console.log('An error occured:', err);
+        dispatch(loading(false));
+        dispatch(failure(err.message));
+      });
+  }
 }

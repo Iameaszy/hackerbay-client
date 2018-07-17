@@ -1,38 +1,63 @@
+*{
+    box-sizing: border-box;
+}
 form {
-    padding: 10px;
+    display: flex;
+    width: 33%;
+    flex-direction: column;
+    align-items: center;
+    margin: 7rem auto;
+    box-shadow: 0 0 1px 1px grey;
+    border-radius: 16px;
+    padding-top: 3rem;
 }
 
+.server-error{
+    width: 100%;
+    text-align: center;
+    background: #e66d6d;
+    padding: 0.5rem;
+    color:white;
+    font-weight: bold;
+    position: absolute;
+    width: 48%;
+    top: 3.5rem;
+}
 .field {
-    margin: 1rem;
+    margin: 1rem 0;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
-.field .control .label {
+.field .label {
     display: inline-block;
-    padding-right: 5px;
+    padding-right: 10px;
     text-align: right;
     width: 5rem;
+        align-self: center;
+
 }
 
 .field .error {
+    margin:0;
     display: block;
-    margin-left: 5.3rem;
+    margin-left: 5.6rem;
     padding: 0.5rem;
-    background: #ce5050a3;
+    background: #e66d6d;
     width: 10.75rem;
     color: white;
 }
 
-.field .control .control-container {
-    display: inline-block;
-}
-
-.field .control input {
-    padding: 0.5rem;
+.field .control-container input{
+    padding: 6px 1rem;
     border: solid 1px lightgray;
     border-radius: 3px
 }
 
-.field .control .button {
+
+.field .button {
     color: white;
     line-height: 1.5;
     padding: 0.5rem;
@@ -40,7 +65,7 @@ form {
     border-radius: 5px;
     background: #168e16c2;
     width: 5rem;
-    margin-left: 5.1rem;
+    margin-left: 5.7rem;
     cursor: pointer;
 }
 
