@@ -7,9 +7,9 @@ export const IS_FAILURE = "IS_FAILURE"
 export const LOADING = "LOADING";
 
 
-export function loading(state=false){
+export function loading(state = false) {
   return {
-    type:LOADING,
+    type: LOADING,
     state
   }
 }
@@ -31,10 +31,11 @@ export default function makeRequest() {
   return function (dispatch) {
     dispatch(loading(true));
 
-    fetch('localhost:3000')
+    fetch('http://localhost:3000')
       .then(res => {
         dispatch(loading(false));
-        dispatch(success(res));
+        console.log(res);
+        dispatch(success(JSON.stringify(res)));
       }, err => {
         console.log('An error occured:', err);
         dispatch(loading(false));

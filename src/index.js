@@ -2,7 +2,6 @@ import React from 'react';
 import thunkMiddleware from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import './index.css';
-import makeRequest,{failure, success,loading} from './actions';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

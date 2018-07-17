@@ -1,12 +1,23 @@
 *{
     box-sizing: border-box;
 }
+
+.submit-title, .login-title{
+    position: absolute;
+    top: 3rem;
+    width: 38%;
+    padding: 0.5rem;
+    text-align: center;
+    color: white;
+    border-radius: 10px;
+    background: linear-gradient(to right,blue,green);
+}
 form {
     display: flex;
     width: 33%;
     flex-direction: column;
     align-items: center;
-    margin: 7rem auto;
+    margin: 11rem auto;
     box-shadow: 0 0 1px 1px grey;
     border-radius: 16px;
     padding-top: 3rem;
