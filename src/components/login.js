@@ -1,7 +1,7 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 
-import makeRequest from '../actions';
+import login from '../actions/login';
 import { connect } from 'react-redux';
 
 //validations
@@ -23,7 +23,7 @@ function LogInForm(props) {
     <div className="login-title">Login Form</div>
         {loading &&
           <p className='loading'>
-          <svg class="lds-message" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(20 50)">
+          <svg className="lds-message" width="80px"  height="80px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid"><g transform="translate(20 50)">
 <circle cx="0" cy="0" r="7" fill="#e15b64" transform="scale(0.99275 0.99275)">
   <animateTransform attributeName="transform" type="scale" begin="-0.375s" calcMode="spline" keySplines="0.3 0 0.7 1;0.3 0 0.7 1" values="0;1;0" keyTimes="0;0.5;1" dur="1s" repeatCount="indefinite"></animateTransform>
 </circle>
@@ -72,7 +72,7 @@ function LogInForm(props) {
             disabled={pristine || submitting || invalid}
             className="button is-link"
           >
-            Submit
+            Login
           </button>
         </div>
       </div>
@@ -89,7 +89,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
   </div>
 );
 LogInForm = reduxForm({
-  form: 'signup',
+  form: 'login',
 })(LogInForm);
 
 const mapStatesWithProps = states =>{
@@ -101,7 +101,7 @@ const mapStatesWithProps = states =>{
 }
 const mapDispatchWithProps = dispatch=>{
   return {
-    onSubmit:(values)=>{dispatch(makeRequest(values))}
+    onSubmit:(values)=>{console.log('values:',values);dispatch(login(values))}
  }
 }
 

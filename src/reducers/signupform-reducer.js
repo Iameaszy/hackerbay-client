@@ -1,6 +1,6 @@
 import {
-  IS_SUCCESS,
-  IS_FAILURE,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
   LOADING
 } from "../actions";
 import {
@@ -16,7 +16,7 @@ function loading(state=false,action){
 }
 function success(state='', action) {
   switch (action.type) {
-    case IS_SUCCESS:
+    case REGISTER_SUCCESS:
       return action.payload
     default:
       return state;
@@ -25,7 +25,7 @@ function success(state='', action) {
 
 function failure(state = '', action) {
   switch (action.type) {
-    case IS_FAILURE:
+    case REGISTER_FAILURE:
       return action.error
     default:
       return state;

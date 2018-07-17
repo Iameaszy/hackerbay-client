@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
 
 
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS"
-export const REGISTER_FAILURE = "REGISTER_FAILURE"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
+export const LOGIN_FAILURE = "LOGIN_FAILURE"
 export const LOADING = "LOADING";
 
 
@@ -14,23 +14,23 @@ export function loading(state = false) {
 }
 export function success(payload) {
   return {
-    type: REGISTER_SUCCESS,
+    type: LOGIN_SUCCESS,
     payload
   }
 }
 
 export function failure(error) {
   return {
-    type: REGISTER_FAILURE,
+    type: LOGIN_FAILURE,
     error
   }
 }
 
-export default function makeRequest(data) {
+export default function login(data) {
   return function (dispatch) {
     dispatch(loading(true));
 
-    fetch('http://localhost:3000/user/signup', {
+    fetch('http://localhost:3000/user/login', {
         method: 'post',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ export default function makeRequest(data) {
       )
       .then(res => {
         dispatch(loading(false));
-        if (res && res.status < 400) {
+        if (res.status >= 200 && res.status < 400) {
           dispatch(success(JSON.stringify(res.data.session)));
         } else {
           dispatch(failure(res.data.error));

@@ -1,8 +1,8 @@
 import {
-    IS_SUCCESS,
-    IS_FAILURE,
+    LOGIN_SUCCESS,
+    LOGIN_FAILURE,
     LOADING
-} from "../actions";
+} from "../actions/login";
 import {
     combineReducers
 } from "redux";
@@ -19,7 +19,7 @@ function loading(state = false, action) {
 
 function success(state = '', action) {
     switch (action.type) {
-        case IS_SUCCESS:
+        case LOGIN_SUCCESS:
             return action.payload
         default:
             return state;
@@ -28,7 +28,7 @@ function success(state = '', action) {
 
 function failure(state = '', action) {
     switch (action.type) {
-        case IS_FAILURE:
+        case LOGIN_FAILURE:
             return action.error
         default:
             return state;

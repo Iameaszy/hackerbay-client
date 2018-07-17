@@ -1,8 +1,9 @@
-*{
+* {
     box-sizing: border-box;
 }
 
-.submit-title, .login-title{
+.submit-title,
+.login-title {
     position: absolute;
     top: 3rem;
     width: 38%;
@@ -10,8 +11,9 @@
     text-align: center;
     color: white;
     border-radius: 10px;
-    background: linear-gradient(to right,blue,green);
+    background: linear-gradient(to right, blue, green);
 }
+
 form {
     display: flex;
     width: 33%;
@@ -23,17 +25,18 @@ form {
     padding-top: 3rem;
 }
 
-.server-error{
+.server-error {
     width: 100%;
     text-align: center;
     background: #e66d6d;
     padding: 0.5rem;
-    color:white;
+    color: white;
     font-weight: bold;
     position: absolute;
-    width: 48%;
-    top: 3.5rem;
+    width: 42%;
+    top: 7.5rem;
 }
+
 .field {
     margin: 1rem 0;
     width: 70%;
@@ -47,12 +50,11 @@ form {
     padding-right: 10px;
     text-align: right;
     width: 5rem;
-        align-self: center;
-
+    align-self: center;
 }
 
 .field .error {
-    margin:0;
+    margin: 0;
     display: block;
     margin-left: 5.6rem;
     padding: 0.5rem;
@@ -61,12 +63,11 @@ form {
     color: white;
 }
 
-.field .control-container input{
+.field .control-container input {
     padding: 6px 1rem;
     border: solid 1px lightgray;
     border-radius: 3px
 }
-
 
 .field .button {
     color: white;
