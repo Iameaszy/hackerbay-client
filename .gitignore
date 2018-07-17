@@ -23,3 +23,4 @@ yarn-error.log*
 
 src/myForm.js
 debug.log
+src/App.test.js
