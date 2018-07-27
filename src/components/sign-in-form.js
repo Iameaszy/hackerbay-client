@@ -1,22 +1,22 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
 
-import "./sign-in-form.css";
+//import "./sign-in-form.css";
 import makeRequest from "../actions";
 import { connect } from "react-redux";
 
 //validations
-const required = value => (value ? undefined : "Required");
-const email = value =>
+const required = (value) => (value ? undefined : "Required");
+const email = (value) =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
     ? "invalid email address"
     : undefined;
-const minLength8 = value =>
+const minLength8 = (value) =>
   value && value.length >= 8
     ? undefined
     : "password must be atleast eight (8) long";
 
-function SignInForm(props) {
+export function SignInForm(props) {
   const {
     pristine,
     submitting,
@@ -127,16 +127,16 @@ SignInForm = reduxForm({
   form: "signup",
 })(SignInForm);
 
-const mapStatesWithProps = states => {
+const mapStatesWithProps = (states) => {
   return {
     loading: states.signup.loading,
     failure: states.signup.failure,
     success: states.signup.success,
   };
 };
-const mapDispatchWithProps = dispatch => {
+const mapDispatchWithProps = (dispatch) => {
   return {
-    onSubmit: values => {
+    onSubmit: (values) => {
       dispatch(makeRequest(values));
     },
   };
