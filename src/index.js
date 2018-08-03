@@ -2,7 +2,11 @@ import React from "react";
 import thunkMiddleware from "redux-thunk";
 import ReactDOM from "react-dom";
 import "./index.css";
+/* Components */
 import App from "./App";
+import { Home } from "./components/home/home";
+
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import registerServiceWorker from "./registerServiceWorker";
 
 import { createStore, applyMiddleware } from "redux";
@@ -17,7 +21,14 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <main>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/home" component={Home} />
+        </Switch>
+      </main>
+    </BrowserRouter>
   </Provider>,
   document.getElementById("root"),
 );

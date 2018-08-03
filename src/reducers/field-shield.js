@@ -5,6 +5,6 @@ export default function(state = false, action) {
     case IS_REGISTER:
       return action.state;
     default:
-      return false;
+      return state;
   }
 }

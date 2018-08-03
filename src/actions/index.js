@@ -1,4 +1,5 @@
 import fetch from "isomorphic-fetch";
+import axios from "axios";
 
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
@@ -28,33 +29,24 @@ export default function makeRequest(data) {
   return function(dispatch) {
     dispatch(loading(true));
 
-    fetch("http://localhost:3000/user/signup", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(
-        async res => {
-          let response = await res.json();
-          return {
-            status: res.status,
-            data: response,
-          };
+    axios
+      .post("http://localhost:3000/user/signup", {
+        headers: {
+          "Content-Type": "application/json",
         },
-        err => {
-          dispatch(loading(false));
-          dispatch(failure(err.message));
-        },
-      )
-      .then(res => {
+        body: JSON.stringify(data),
+      })
+      .then((res) => {
         dispatch(loading(false));
         if (res && res.status < 400) {
           dispatch(success(JSON.stringify(res.data.session)));
         } else {
           dispatch(failure(res.data.error));
         }
+      })
+      .catch((err) => {
+        dispatch(loading(false));
+        dispatch(failure(err.message));
       });
   };
 }

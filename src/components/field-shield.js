@@ -4,23 +4,34 @@ import { connect } from "react-redux";
 import "./field-shield.css";
 
 import shieldIt from "../actions/field-shield";
-export function fieldShield({ shield, dispatch }) {
+export function fieldShield({ shield, onClick }) {
   const style = shield ? { right: "0px" } : { left: "0px" };
   return (
     <div className="shadow" style={style}>
       <button
         onClick={() => {
-          dispatch(shieldIt(!shield));
+          onClick(!shield);
         }}>
-        {shield && <span>Login</span>}
-        {!shield && <span>Register</span>}
+        {shield && <span>Register</span>}
+        {!shield && <span>Login</span>}
       </button>
     </div>
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return { shield: state.shield };
 };
 
-export default connect(mapStateToProps)(fieldShield);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onClick: (prop) => {
+      dispatch(shieldIt(prop));
+    },
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(fieldShield);
