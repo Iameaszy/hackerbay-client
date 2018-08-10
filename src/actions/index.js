@@ -1,8 +1,10 @@
-import fetch from "isomorphic-fetch";
+import axios from 'axios';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAILURE = "REGISTER_FAILURE";
-export const LOADING = "LOADING";
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const LOADING = 'LOADING';
 
 export function loading(state = false) {
   return {
@@ -28,33 +30,24 @@ export default function makeRequest(data) {
   return function(dispatch) {
     dispatch(loading(true));
 
-    fetch("http://localhost:3000/user/signup", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then(
-        async res => {
-          let response = await res.json();
-          return {
-            status: res.status,
-            data: response,
-          };
+    axios
+      .post('http://localhost:3000/user/signup', data, {
+        headers: {
+          'Content-Type': 'application/json',
         },
-        err => {
-          dispatch(loading(false));
-          dispatch(failure(err.message));
-        },
-      )
-      .then(res => {
+      })
+      .then((res) => {
         dispatch(loading(false));
         if (res && res.status < 400) {
           dispatch(success(JSON.stringify(res.data.session)));
+          return <Redirect to="/home" />;
         } else {
           dispatch(failure(res.data.error));
         }
+      })
+      .catch((err) => {
+        dispatch(loading(false));
+        dispatch(failure(err.message));
       });
   };
 }

@@ -1,9 +1,9 @@
-import SignIn, { SignInForm } from "../src/components/sign-in-form";
+import LogIn from "../src/components/login";
 import React from "react";
 
 import { mount } from "enzyme";
-import { spy, stub, mock, fake } from "sinon";
-import * as actions from "../src/actions";
+import { spy } from "sinon";
+import * as actions from "../src/actions/login";
 
 import reducers from "../src/reducers";
 import thunk from "redux-thunk";
@@ -37,12 +37,12 @@ describe("ContactFormContainer", () => {
     };
     wrapper = mount(
       <Provider store={store}>
-        <SignIn {...props} />
+        <LogIn {...props} />
       </Provider>,
     );
   });
   it("shows help text when first name is set to blank", () => {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                       const input = wrapper.find("input").first();
+    const input = wrapper.find("input").first();
     const lastInput = wrapper.find("input").last();
     input.simulate("blur");
     lastInput.simulate("blur");
@@ -88,7 +88,7 @@ describe("ContactFormContainer", () => {
     };
     wrapper = mount(
       <Provider store={store}>
-        <SignIn {...props} />
+        <LogIn {...props} />
       </Provider>,
     );
 
@@ -105,35 +105,27 @@ describe("ContactFormContainer", () => {
     expect(serverError.text()).toBe("User with this email already exist");
   });
 
-  describe("form loader >>", () => {
-    beforeAll(() => {
-      wrapper = wrapper.unmount();
-      handleSubmit = (val) => {
-        onSubmit({ type: "load" }, store);
-      };
-      const props = { handleSubmit };
-      wrapper = mount(
-        <Provider store={store}>
-          <SignIn {...props} />
-        </Provider>,
-      );
+  it("should submit form", () => {
+    wrapper = wrapper.unmount();
+    handleSubmit = (val) => {
+      onSubmit({ type: "load" }, store);
+    };
+    const props = { handleSubmit };
+    wrapper = mount(
+      <Provider store={store}>
+        <LogIn {...props} />
+      </Provider>,
+    );
 
-      const input = wrapper.find("input").first();
-      const lastInput = wrapper.find("input").last();
+    const input = wrapper.find("input").first();
+    const lastInput = wrapper.find("input").last();
 
-      input.simulate("change", { target: { value: "easyclick05@gmail.com" } });
-      lastInput.simulate("change", { target: { value: "abcdefghij" } });
+    input.simulate("change", { target: { value: "easyclick05@gmail.com" } });
+    lastInput.simulate("change", { target: { value: "abcdefghij" } });
 
-      wrapper.find("form").simulate("submit");
-    });
-
-    it("should dispatch the loading action", () => {
-      expect(loadingSpy.callCount).toEqual(1);
-    });
-
-    it("should display loader", () => {
-      const loading = wrapper.find(".loading");
-      expect(loading).toHaveLength(1);
-    });
+    wrapper.find("form").simulate("submit");
+    const loading = wrapper.find(".loading");
+    expect(loadingSpy.callCount).toEqual(1);
+    expect(loading).toHaveLength(1);
   });
 });

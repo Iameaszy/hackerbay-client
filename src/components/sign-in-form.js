@@ -1,7 +1,7 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
 
-//import "./sign-in-form.css";
+import "./sign-in-form.css";
 import makeRequest from "../actions";
 import { connect } from "react-redux";
 
@@ -24,7 +24,6 @@ export function SignInForm(props) {
     invalid,
     loading,
     failure,
-    success,
   } = props;
   return (
     <form className="form" onSubmit={handleSubmit}>
@@ -125,8 +124,11 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
 );
 SignInForm = reduxForm({
   form: "signup",
+  onSubmit,
 })(SignInForm);
-
+function onSubmit(values, dispatch) {
+  dispatch(makeRequest(values));
+}
 const mapStatesWithProps = (states) => {
   return {
     loading: states.signup.loading,
@@ -134,14 +136,5 @@ const mapStatesWithProps = (states) => {
     success: states.signup.success,
   };
 };
-const mapDispatchWithProps = (dispatch) => {
-  return {
-    onSubmit: (values) => {
-      dispatch(makeRequest(values));
-    },
-  };
-};
-export default connect(
-  mapStatesWithProps,
-  mapDispatchWithProps,
-)(SignInForm);
+
+export default connect(mapStatesWithProps)(SignInForm);

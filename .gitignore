@@ -25,3 +25,4 @@ src/myForm.js
 debug.log
 src/App.test.js
 .babelrc
+.jest-test-results.json

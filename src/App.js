@@ -23,9 +23,4 @@ class App extends Component {
   }
 }
 
-// function to convert the global state obtained from redux to local props
-function mapStateToProps(state) {
-  return {};
-}
-
-export default connect(mapStateToProps)(App);
+export default connect()(App);

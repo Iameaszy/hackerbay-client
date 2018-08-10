@@ -1,55 +1,40 @@
-import fetch from 'isomorphic-fetch';
+import axios from "axios";
 
-
-export const LOGIN_SUCCESS = "LOGIN_SUCCESS"
-export const LOGIN_FAILURE = "LOGIN_FAILURE"
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOADING = "LOADING";
-
 
 export function loading(state = false) {
   return {
     type: LOADING,
-    state
-  }
+    state,
+  };
 }
 export function success(payload) {
   return {
     type: LOGIN_SUCCESS,
-    payload
-  }
+    payload,
+  };
 }
 
 export function failure(error) {
   return {
     type: LOGIN_FAILURE,
-    error
-  }
+    error,
+  };
 }
 
 export default function login(data) {
-  return function (dispatch) {
+  return function(dispatch) {
     dispatch(loading(true));
 
-    fetch('http://localhost:3000/user/login', {
-        method: 'post',
+    axios
+      .post("http://localhost:3000/user/login", JSON.stringify(data), {
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data)
       })
-      .then(async (res) => {
-          let response = await res.json();
-          return {
-            status: res.status,
-            data: response
-          }
-        },
-        err => {
-          dispatch(loading(false));
-          dispatch(failure(err.message));
-        }
-      )
-      .then(res => {
+      .then((res) => {
         dispatch(loading(false));
         if (res.status >= 200 && res.status < 400) {
           dispatch(success(JSON.stringify(res.data.session)));
@@ -57,5 +42,9 @@ export default function login(data) {
           dispatch(failure(res.data.error));
         }
       })
-  }
+      .catch((err) => {
+        dispatch(loading(false));
+        dispatch(failure(err.message));
+      });
+  };
 }
