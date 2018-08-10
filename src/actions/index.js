@@ -1,9 +1,10 @@
-import fetch from "isomorphic-fetch";
-import axios from "axios";
+import axios from 'axios';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 
-export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
-export const REGISTER_FAILURE = "REGISTER_FAILURE";
-export const LOADING = "LOADING";
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+export const LOADING = 'LOADING';
 
 export function loading(state = false) {
   return {
@@ -30,16 +31,16 @@ export default function makeRequest(data) {
     dispatch(loading(true));
 
     axios
-      .post("http://localhost:3000/user/signup", {
+      .post('http://localhost:3000/user/signup', data, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
       })
       .then((res) => {
         dispatch(loading(false));
         if (res && res.status < 400) {
           dispatch(success(JSON.stringify(res.data.session)));
+          return <Redirect to="/home" />;
         } else {
           dispatch(failure(res.data.error));
         }
