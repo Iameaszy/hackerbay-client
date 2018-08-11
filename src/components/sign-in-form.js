@@ -1,20 +1,21 @@
-import React from "react";
-import { reduxForm, Field } from "redux-form";
+import React from 'react';
+import { reduxForm, Field } from 'redux-form';
 
-import "./sign-in-form.css";
-import makeRequest from "../actions";
-import { connect } from "react-redux";
+import './sign-in-form.css';
+import makeRequest from '../actions';
+import axios from 'axios';
+import { connect } from 'react-redux';
 
 //validations
-const required = (value) => (value ? undefined : "Required");
+const required = (value) => (value ? undefined : 'Required');
 const email = (value) =>
   value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)
-    ? "invalid email address"
+    ? 'invalid email address'
     : undefined;
 const minLength8 = (value) =>
   value && value.length >= 8
     ? undefined
-    : "password must be atleast eight (8) long";
+    : 'password must be atleast eight (8) long';
 
 export function SignInForm(props) {
   const {
@@ -123,7 +124,7 @@ const renderField = ({ input, label, type, meta: { touched, error } }) => (
   </div>
 );
 SignInForm = reduxForm({
-  form: "signup",
+  form: 'signup',
   onSubmit,
 })(SignInForm);
 function onSubmit(values, dispatch) {
