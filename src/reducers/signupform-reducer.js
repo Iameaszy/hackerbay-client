@@ -1,23 +1,18 @@
-import {
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
-  LOADING
-} from "../actions";
-import {
-  combineReducers
-} from "redux";
+import { REGISTER_SUCCESS, REGISTER_FAILURE, LOADING } from '../actions';
+import { combineReducers } from 'redux';
 
-
-function loading(state=false,action){
-    switch(action.type){
-      case LOADING: return action.state;
-      default: return state;
-    }
+function loading(state = false, action) {
+  switch (action.type) {
+    case LOADING:
+      return action.state;
+    default:
+      return state;
+  }
 }
-function success(state='', action) {
+function success(state = false, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      return action.payload
+      return action.status;
     default:
       return state;
   }
@@ -26,7 +21,7 @@ function success(state='', action) {
 function failure(state = '', action) {
   switch (action.type) {
     case REGISTER_FAILURE:
-      return action.error
+      return action.error;
     default:
       return state;
   }
@@ -35,7 +30,7 @@ function failure(state = '', action) {
 const reducers = combineReducers({
   failure,
   success,
-  loading
+  loading,
 });
 
 export default reducers;

@@ -1,6 +1,6 @@
 import axios from 'axios';
-import React from 'react';
-import { Redirect } from 'react-router-dom';
+
+import { push } from 'connected-react-router';
 
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
@@ -12,10 +12,10 @@ export function loading(state = false) {
     state,
   };
 }
-export function success(payload) {
+export function success(status) {
   return {
     type: REGISTER_SUCCESS,
-    payload,
+    status,
   };
 }
 
@@ -39,15 +39,17 @@ export default function makeRequest(data) {
       .then((res) => {
         dispatch(loading(false));
         if (res && res.status < 400) {
-          dispatch(success(JSON.stringify(res.data.session)));
-          return <Redirect to="/home" />;
+          const token = JSON.stringify(res.data.session);
+          localStorage.setItem('token', token);
+          dispatch(success(true));
+          dispatch(push('/'));
         } else {
           dispatch(failure(res.data.error));
         }
       })
       .catch((err) => {
         dispatch(loading(false));
-        dispatch(failure(err.message));
+        dispatch(failure(err.response.data.error));
       });
   };
 }

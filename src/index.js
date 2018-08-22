@@ -1,36 +1,51 @@
-import React from "react";
-import thunkMiddleware from "redux-thunk";
-import ReactDOM from "react-dom";
-import "./index.css";
+import React from 'react';
+import thunkMiddleware from 'redux-thunk';
+import ReactDOM from 'react-dom';
+import './index.css';
 /* Components */
-import App from "./App";
-import { Home } from "./components/home/home";
+import App from './App';
+import Home from './containers/home/home';
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import registerServiceWorker from "./registerServiceWorker";
+import { Route, Switch } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import registerServiceWorker from './registerServiceWorker';
 
-import { createStore, applyMiddleware } from "redux";
-import { Provider } from "react-redux";
-import logger from "redux-logger";
-import reducers from "./reducers";
-import ReduxPromise from "redux-promise";
+import { createStore, applyMiddleware, compose } from 'redux';
+import {
+  connectRouter,
+  ConnectedRouter,
+  routerMiddleware,
+} from 'connected-react-router';
+import { Provider } from 'react-redux';
+import logger from 'redux-logger';
+import reducers from './reducers';
+import ReduxPromise from 'redux-promise';
+
+const history = createBrowserHistory();
 const store = createStore(
-  reducers,
-  applyMiddleware(thunkMiddleware, logger, ReduxPromise),
+  connectRouter(history)(reducers),
+  compose(
+    applyMiddleware(
+      routerMiddleware(history),
+      thunkMiddleware,
+      logger,
+      ReduxPromise,
+    ),
+  ),
 );
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <ConnectedRouter history={history}>
       <main>
         <Switch>
-          <Route exact path="/" component={App} />
-          <Route path="/home" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/registration" component={App} />
         </Switch>
       </main>
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
-  document.getElementById("root"),
+  document.getElementById('root'),
 );
 registerServiceWorker();
 export default store;

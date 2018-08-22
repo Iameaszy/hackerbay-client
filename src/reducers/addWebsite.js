@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOADING } from '../actions/login';
+import { ADD_SUCCESS, ADD_FAILURE, LOADING } from '../actions/addWebsite';
 import { combineReducers } from 'redux';
 
 function loading(state = false, action) {
@@ -10,10 +10,10 @@ function loading(state = false, action) {
   }
 }
 
-function success(state = false, action) {
+function success(state = [], action) {
   switch (action.type) {
-    case LOGIN_SUCCESS:
-      return action.status;
+    case ADD_SUCCESS:
+      return state.concat(action.data);
     default:
       return state;
   }
@@ -21,7 +21,7 @@ function success(state = false, action) {
 
 function failure(state = '', action) {
   switch (action.type) {
-    case LOGIN_FAILURE:
+    case ADD_FAILURE:
       return action.error;
     default:
       return state;

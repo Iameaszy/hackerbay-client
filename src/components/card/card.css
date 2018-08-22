@@ -1,0 +1,108 @@
+.Card {
+    position: relative;
+}
+
+.Card-title {
+    font-size: 25pt;
+    background: rgb(255, 204, 201);
+    margin: 0;
+    border-radius: 1rem 1rem 0 0;
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+.Card-indicator_green,
+.Card-indicator_red {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    position: absolute;
+    right: 1.5rem;
+    top: 13px;
+}
+
+.Card-indicator_green2,
+.Card-indicator_red2 {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    position: absolute;
+    left: 1.5rem;
+    top: 13px;
+}
+
+.Card-indicator_green,
+.Card-indicator_green2 {
+    background: green;
+}
+
+.Card-indicator_red,
+.Card-indicator_red2 {
+    background: red;
+}
+
+.Card-description_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    list-style-type: none;
+    padding: 0;
+    height: 147px;
+    margin: 0;
+}
+
+.Card-description {
+    display: flex;
+    justify-content: center;
+}
+
+.Card-description_label {
+    font-size: 25px;
+    margin-right: 1rem;
+}
+
+.Card-description_detail {
+    display: flex;
+    align-items: center;
+    font-size: larger;
+}
+
+.Card-action_wrapper {
+    padding: 0;
+    border-radius: 0 0 1rem 1rem;
+    list-style-type: none;
+    background: rgb(255, 204, 201);
+    position: fixed;
+    width: 25%;
+    bottom: 1.6rem;
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.Card-action_edit,
+.Card-action_delete {
+    width: 4rem;
+    background: green;
+    display: block;
+    color: white;
+    height: 2rem;
+    border-radius: 5px;
+    line-height: 2;
+    margin-left: 1rem;
+}
+
+.Card-action_edit a,
+.Card-action_delete a {
+    color: white;
+}
+
+.Card-action_delete {
+    background: red;
+}
+
+.Card-delete_confirmation {
+    background: white;
+}

@@ -2,65 +2,41 @@
     box-sizing: border-box;
 }
 
-.submit-title,
-.login-title {
-    position: absolute;
-    top: 3rem;
-    width: 38%;
-    padding: 0.5rem;
-    text-align: center;
-    color: white;
-    border-radius: 10px;
-    background: linear-gradient(to right, blue, green);
-}
-
 form {
+    width: 50%;
     display: flex;
-    width: 33%;
     flex-direction: column;
     align-items: center;
-    margin: 11rem auto;
-    box-shadow: 0 0 1px 1px grey;
-    border-radius: 16px;
-    padding-top: 3rem;
 }
 
 .server-error {
     width: 100%;
     text-align: center;
     background: #e66d6d;
-    padding: 0.5rem;
     color: white;
     font-weight: bold;
     position: absolute;
-    width: 42%;
-    top: 7.5rem;
+    top: 0rem;
+    transition: 0.6s ease-in;
 }
 
 .field {
     margin: 1rem 0;
     width: 70%;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 .field .label {
-    display: inline-block;
-    padding-right: 10px;
-    text-align: right;
     width: 5rem;
-    align-self: center;
+    color: #F8B49E;
+    text-transform: uppercase;
 }
 
 .field .error {
-    margin: 0;
-    display: block;
-    margin-left: 5.6rem;
-    padding: 0.5rem;
     background: #e66d6d;
-    width: 10.75rem;
     color: white;
+    width: 15.7rem;
+    font-size: 14pt;
+    font-weight: bold;
 }
 
 .field .control-container input {
@@ -73,8 +49,8 @@ form {
     color: white;
     line-height: 1.5;
     padding: 0.5rem;
-    border: solid 1px darkgray;
     border-radius: 5px;
+    border: none;
     background: #168e16c2;
     width: 5rem;
     margin-left: 5.7rem;
@@ -82,6 +58,14 @@ form {
 }
 
 .field .control .button:disabled {
-    cursor: unset;
-    background: #39a93985;
+    background: #669866;
+    border: none;
+}
+
+.field .control .button:disabled:hover {
+    cursor: not-allowed;
+}
+
+.signup-failure_dismiss:hover {
+    text-decoration: underline;
 }
