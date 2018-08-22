@@ -10,10 +10,13 @@ function loading(state = false, action) {
   }
 }
 
-function success(state = [], action) {
+function success(state = { websites: [], fetched: 0 }, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
-      return action.data;
+      return {
+        websites: state.websites.concat(action.data),
+        fetched: action.fetched,
+      };
     default:
       return state;
   }

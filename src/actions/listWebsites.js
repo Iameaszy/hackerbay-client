@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_FAILURE = 'LOGIN_FAILURE';
-export const LOADING = 'LOADING';
+export const LOGIN_SUCCESS = 'LIST_SUCCESS';
+export const LOGIN_FAILURE = 'LIST_FAILURE';
+export const LOADING = 'LIST_LOADING';
 
-export function listWebsiteLoading(state = false) {
+export function listWebsiteLoading(state) {
   return {
     type: LOADING,
     state,
@@ -14,6 +14,7 @@ export function listWebsiteSuccess(data) {
   return {
     type: LOGIN_SUCCESS,
     data,
+    fetched: data.length,
   };
 }
 
@@ -24,14 +25,15 @@ export function listWebsiteFailure(error) {
   };
 }
 
-export default function listWebsiteRequest(data) {
+export default function listWebsiteRequest(start) {
   return function(dispatch) {
     dispatch(listWebsiteLoading(true));
-
+    const token = JSON.parse(localStorage.getItem('token'));
     axios
-      .post('http://localhost:3000/website', JSON.stringify(data), {
+      .get(`http://localhost:3000/website/${start}`, {
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((res) => {
@@ -44,7 +46,11 @@ export default function listWebsiteRequest(data) {
       })
       .catch((err) => {
         dispatch(listWebsiteLoading(false));
+        if(err.response){
         dispatch(listWebsiteFailure(err.response.data.error));
+        }else{
+          dispatch(listWebsiteFailure(err.message));
+        }
       });
   };
 }

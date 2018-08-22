@@ -1,11 +1,11 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import store from '../src/index';
+import store from '../src';
 import { Provider } from 'react-redux';
-import Home from '../src/components/home/home';
-
-let stories = storiesOf('Home', module);
+import Home from '../src/App';
+import { mount } from 'enzyme';
+let stories = storiesOf('Registration form', module);
 
 stories.addDecorator((story) => (
   <Provider store={store}>
@@ -13,6 +13,6 @@ stories.addDecorator((story) => (
   </Provider>
 ));
 
-stories.add('index', () => {
+stories.add('ind', () => {
   return <Home />;
 });

@@ -10,10 +10,10 @@ function loading(state = false, action) {
   }
 }
 
-function success(state = [], action) {
+function success(state = false, action) {
   switch (action.type) {
     case ADD_SUCCESS:
-      return state.concat(action.data);
+      return action.state;
     default:
       return state;
   }

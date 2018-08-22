@@ -4,16 +4,16 @@ export const ADD_SUCCESS = 'ADD_SUCCESS';
 export const ADD_FAILURE = 'ADD_FAILURE';
 export const LOADING = 'LOADING';
 
-export function addWebsiteLoading(state = false) {
+export function addWebsiteLoading(state) {
   return {
     type: LOADING,
     state,
   };
 }
-export function addWebsiteSuccess(data) {
+export function addWebsiteSuccess(state) {
   return {
     type: ADD_SUCCESS,
-    data,
+    state,
   };
 }
 
@@ -38,7 +38,8 @@ export default function addWebsiteRequest(data) {
       .then((res) => {
         dispatch(addWebsiteLoading(false));
         if (res.status >= 200 && res.status < 400) {
-          dispatch(addWebsiteSuccess(res.data));
+          dispatch(addWebsiteSuccess(true));
+          window.location.reload();
         } else {
           dispatch(addWebsiteFailure(res.data.error));
         }
