@@ -1,6 +1,6 @@
 import React from 'react';
 import { reduxForm } from 'redux-form';
-import makeRequest, { failure } from '../../actions';
+import { registerRequest, registerFailure } from '../../actions';
 import { connect } from 'react-redux';
 import loader from '../../icons/index.glowing-rotate-ring.svg';
 import Form from '../../components/form/form';
@@ -36,8 +36,8 @@ let SignInForm = reduxForm({
   onSubmit: submit,
 })(Signin);
 function submit(values, dispatch) {
-  dispatch(failure(''));
-  dispatch(makeRequest(values));
+  dispatch(registerFailure(''));
+  dispatch(registerRequest(values));
 }
 const mapStatesWithProps = (states) => {
   return {
@@ -50,7 +50,7 @@ const mapStatesWithProps = (states) => {
 
 const mapDispatchWithProps = (dispatch) => {
   return {
-    dismiss: () => dispatch(failure(false)),
+    dismiss: () => dispatch(registerFailure(false)),
   };
 };
 export default connect(

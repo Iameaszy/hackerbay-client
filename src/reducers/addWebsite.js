@@ -1,9 +1,13 @@
-import { ADD_SUCCESS, ADD_FAILURE, LOADING } from '../actions/addWebsite';
+import {
+  ADD_WEBSITE_FAILURE,
+  ADD_WEBSITE_LOADING,
+  ADD_WEBSITE_SUCCESS,
+} from '../actions';
 import { combineReducers } from 'redux';
 
 function loading(state = false, action) {
   switch (action.type) {
-    case LOADING:
+    case ADD_WEBSITE_LOADING:
       return action.state;
     default:
       return state;
@@ -12,7 +16,7 @@ function loading(state = false, action) {
 
 function success(state = false, action) {
   switch (action.type) {
-    case ADD_SUCCESS:
+    case ADD_WEBSITE_SUCCESS:
       return action.state;
     default:
       return state;
@@ -21,17 +25,15 @@ function success(state = false, action) {
 
 function failure(state = '', action) {
   switch (action.type) {
-    case ADD_FAILURE:
+    case ADD_WEBSITE_FAILURE:
       return action.error;
     default:
       return state;
   }
 }
 
-const reducers = combineReducers({
+export const addWebsiteReducers = combineReducers({
   failure,
   success,
   loading,
 });
-
-export default reducers;

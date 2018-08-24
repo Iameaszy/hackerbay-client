@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './field-shield.css';
-import shieldIt from '../../actions/field-shield';
+import { fieldAction } from '../../actions';
 
 export function fieldShield({ shield, onClick }) {
   const style = shield ? { right: '0px' } : { left: '0px' };
@@ -26,7 +26,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (prop) => {
-      dispatch(shieldIt(prop));
+      dispatch(fieldAction(prop));
     },
   };
 };

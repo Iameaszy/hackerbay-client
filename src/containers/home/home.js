@@ -4,8 +4,8 @@ import { reduxForm, Field } from 'redux-form';
 import { Redirect } from 'react-router-dom';
 import { push } from 'connected-react-router';
 import { connect } from 'react-redux';
-import addWebsiteRequest, { addWebsiteFailure } from '../../actions/addWebsite';
-import listWebsites from '../../actions/listWebsites';
+import { addWebsiteRequest, addWebsiteFailure } from '../../actions';
+import { listWebsiteRequest } from '../../actions';
 import Card from '../../components/card/card';
 import '../../bootstrap-reboot.css';
 import './home.css';
@@ -65,7 +65,7 @@ export class Home extends Component {
   }
   componentDidMount() {
     this.getWebsites();
-    this.props.dispatch(listWebsites(this.requestCounter));
+    this.props.dispatch(listWebsiteRequest(this.requestCounter));
     this.requestCounter += 12;
     this.handleScroll();
   }
@@ -88,7 +88,7 @@ export class Home extends Component {
         ) {
           const { websitesContainer, dispatch } = that.props;
           if (websitesContainer && websitesContainer.fetched >= 12) {
-            dispatch(listWebsites(that.requestCounter));
+            dispatch(listWebsiteRequest(that.requestCounter));
             that.requestCounter += 12;
           }
         }

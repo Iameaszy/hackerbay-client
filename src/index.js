@@ -18,12 +18,12 @@ import {
 } from 'connected-react-router';
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
-import reducers from './reducers';
+import { rootReducers } from './reducers';
 import ReduxPromise from 'redux-promise';
 
 const history = createBrowserHistory();
-const store = createStore(
-  connectRouter(history)(reducers),
+export const store = createStore(
+  connectRouter(history)(rootReducers),
   compose(
     applyMiddleware(
       routerMiddleware(history),
@@ -48,4 +48,3 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 registerServiceWorker();
-export default store;

@@ -6,7 +6,7 @@ function loadStories() {
   req.keys().forEach((filename) => req(filename));
 }
 
-import 'raf/polyfill';
+//import 'raf/polyfill';
 import Adapter from 'enzyme-adapter-react-16';
 import Enzyme from 'enzyme';
 //import jsdom from "jsdom";

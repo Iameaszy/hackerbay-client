@@ -2,7 +2,7 @@ import React from 'react';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 
-import login, { failure } from '../../actions/login';
+import { loginRequest, loginFailure } from '../../actions';
 import loader from '../../icons/index.messenger-typing-preloader.svg';
 import Form from '../../components/form/form';
 
@@ -54,9 +54,9 @@ const mapStatesWithProps = (states) => {
 const mapDispatchWithProps = (dispatch) => {
   return {
     onSubmit: (values) => {
-      dispatch(login(values));
+      dispatch(loginRequest(values));
     },
-    dismiss: () => dispatch(failure(false)),
+    dismiss: () => dispatch(loginFailure(false)),
   };
 };
 

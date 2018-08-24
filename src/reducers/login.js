@@ -1,9 +1,9 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOADING } from '../actions/login';
+import { LOGIN_SUCCESS, LOGIN_FAILURE, LOGIN_LOADING } from '../actions';
 import { combineReducers } from 'redux';
 
 function loading(state = false, action) {
   switch (action.type) {
-    case LOADING:
+    case LOGIN_LOADING:
       return action.state;
     default:
       return state;
@@ -28,10 +28,8 @@ function failure(state = '', action) {
   }
 }
 
-const reducers = combineReducers({
+export const loginReducers = combineReducers({
   failure,
   success,
   loading,
 });
-
-export default reducers;

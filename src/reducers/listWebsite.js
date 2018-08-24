@@ -1,9 +1,13 @@
-import { LOGIN_SUCCESS, LOGIN_FAILURE, LOADING } from '../actions/listWebsites';
+import {
+  LIST_WEBSITE_FAILURE,
+  LIST_WEBSITE_LOADING,
+  LIST_WEBSITE_SUCCESS,
+} from '../actions';
 import { combineReducers } from 'redux';
 
 function loading(state = false, action) {
   switch (action.type) {
-    case LOADING:
+    case LIST_WEBSITE_LOADING:
       return action.state;
     default:
       return state;
@@ -12,7 +16,7 @@ function loading(state = false, action) {
 
 function success(state = { websites: [], fetched: 0 }, action) {
   switch (action.type) {
-    case LOGIN_SUCCESS:
+    case LIST_WEBSITE_SUCCESS:
       return {
         websites: state.websites.concat(action.data),
         fetched: action.fetched,
@@ -24,17 +28,15 @@ function success(state = { websites: [], fetched: 0 }, action) {
 
 function failure(state = '', action) {
   switch (action.type) {
-    case LOGIN_FAILURE:
+    case LIST_WEBSITE_FAILURE:
       return action.error;
     default:
       return state;
   }
 }
 
-const reducers = combineReducers({
+export const listWebsiteReducers = combineReducers({
   failure,
   success,
   loading,
 });
-
-export default reducers;

@@ -1,10 +1,10 @@
-import { IS_REGISTER } from "../actions/field-shield";
+import { REGISTER_LOGIN } from '../actions';
 
-export default function(state = false, action) {
+export const fieldhieldReducer = (state = false, action) => {
   switch (action.type) {
-    case IS_REGISTER:
+    case REGISTER_LOGIN:
       return action.state;
     default:
       return state;
   }
-}
+};

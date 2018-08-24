@@ -1,9 +1,13 @@
-import { REGISTER_SUCCESS, REGISTER_FAILURE, LOADING } from '../actions';
+import {
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  REGISTER_LOADING,
+} from '../actions';
 import { combineReducers } from 'redux';
 
 function loading(state = false, action) {
   switch (action.type) {
-    case LOADING:
+    case REGISTER_LOADING:
       return action.state;
     default:
       return state;
@@ -27,10 +31,8 @@ function failure(state = '', action) {
   }
 }
 
-const reducers = combineReducers({
+export const registerReducers = combineReducers({
   failure,
   success,
   loading,
 });
-
-export default reducers;
