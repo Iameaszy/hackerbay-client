@@ -24,6 +24,7 @@ export default function Form(props) {
     failure,
     loader,
     dismiss,
+    text,
   } = props;
 
   const failureStyle = {
@@ -77,7 +78,7 @@ export default function Form(props) {
             type="submit"
             disabled={pristine || submitting || invalid}
             className="button is-link">
-            Register
+            {text}
           </button>
         </div>
       </div>

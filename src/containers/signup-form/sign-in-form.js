@@ -27,7 +27,7 @@ function Signin(props) {
   return (
     <section className="Signin" style={signinStyle}>
       <h3 style={style}>Registration Form</h3>
-      <Form {...props} />
+      <Form {...props} text={'Register'} />
     </section>
   );
 }

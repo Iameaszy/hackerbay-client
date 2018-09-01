@@ -34,7 +34,7 @@ function Login(props) {
   return (
     <section className="Login" style={logintyle}>
       <h3 style={style}>Login Form</h3>
-      <Form {...props} />
+      <Form {...props} text={'Login'} />
     </section>
   );
 }

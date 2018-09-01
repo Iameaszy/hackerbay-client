@@ -185,7 +185,7 @@ export class Home extends Component {
           </div>
           <div className="Home-card_container">
             <h2 className="Home-card-container_title">Latest</h2>
-            {data && <Card data={data.data[0]} width={'65%'} />}
+            {data.length && <Card data={data.data[0]} width={'65%'} />}
           </div>
         </div>
         <div className="Home-websites">

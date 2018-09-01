@@ -49,16 +49,17 @@ form {
     color: white;
     line-height: 1.5;
     padding: 0.5rem;
-    border-radius: 5px;
+    border-radius: 30px;
     border: none;
-    background: #168e16c2;
-    width: 5rem;
-    margin-left: 5.7rem;
+    background: #0012DF;
+    width: 6rem;
+    margin-left: 4.7rem;
     cursor: pointer;
+    height: 4rem;
 }
 
 .field .control .button:disabled {
-    background: #669866;
+    background: #3675a2;
     border: none;
 }
 
