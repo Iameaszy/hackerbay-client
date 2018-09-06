@@ -185,14 +185,17 @@ export class Home extends Component {
           </div>
           <div className="Home-card_container">
             <h2 className="Home-card-container_title">Latest</h2>
-            {data.length && <Card data={data.data[0]} width={'65%'} />}
+            {data && data.length && <Card data={data.data[0]} width={'65%'} />}
           </div>
         </div>
         <div className="Home-websites">
           {websitesContainer &&
+            websitesContainer.fetched &&
             websitesContainer.websites.map((website, ind) => {
               return <Card data={website} key={ind} />;
             })}
+          {websitesContainer &&
+            !websitesContainer.fetched && <h1>No website added yet!</h1>}
         </div>
         <div>
           {websiteLoading && (
