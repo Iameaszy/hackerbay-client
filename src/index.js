@@ -22,7 +22,7 @@ import { rootReducers } from './reducers';
 import ReduxPromise from 'redux-promise';
 
 const history = createBrowserHistory();
-export const store = createStore(
+const store = createStore(
   connectRouter(history)(rootReducers),
   compose(
     applyMiddleware(
@@ -48,3 +48,5 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 registerServiceWorker();
+
+export default store;
