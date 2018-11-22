@@ -1,7 +1,6 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-import '../../bootstrap-reboot.css';
 import './form.css';
 //validations
 const required = (value) => (value ? undefined : 'Required');

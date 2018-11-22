@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import './field-shield.css';
-import { fieldAction } from '../../actions';
+import { fieldAction } from '../../redux/actions/index';
 
 export function fieldShield({ shield, onClick }) {
   const style = shield ? { right: '0px' } : { left: '0px' };
