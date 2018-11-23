@@ -10,6 +10,10 @@ export const Footer = styled.footer`
   background: #f5f5f5;
   color: #888181b8;
   padding-top: 30px;
+
+  @media (max-width: 760px) {
+    position: relative;
+  }
   .footer {
     margin: auto;
     width: 90%;

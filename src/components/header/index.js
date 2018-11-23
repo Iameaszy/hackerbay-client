@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from './../buttons/index';
+import { Button } from './../buttons/button.style';
 import { Header as HeaderStyle } from './header.style';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 export class Header extends React.Component {

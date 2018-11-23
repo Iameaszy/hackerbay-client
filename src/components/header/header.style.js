@@ -10,6 +10,8 @@ export const Header = styled.header`
   height: 100px;
   top: 0;
   color: ${primaryTextColor};
+  background: white;
+  z-index: 1;
 
   .navbar-brand {
     font-size: 22px;
