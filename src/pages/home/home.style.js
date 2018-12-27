@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HomeStyle = styled.div`
   .jumbotron-img-wrapper {
@@ -7,6 +7,9 @@ export const HomeStyle = styled.div`
         width: 100%;
       }
     }
+  }
+  .row-1 {
+    flex-direction: row-reverse;
   }
   .jumbotron {
     display: flex;

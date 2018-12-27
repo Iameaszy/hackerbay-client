@@ -1,13 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { HomeStyle } from './home.style';
-import { Button } from '../../components/buttons/button.style';
-import image from '../../assets/images/alert-image.jpeg';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { HomeStyle } from "./home.style";
+import { Button } from "../../components/buttons/button.style";
 export class Home extends Component {
   render() {
     return (
       <HomeStyle>
-        <div className="row">
+        <div className="row row-1">
           <div className="col-md-6 jumbotron">
             <h1 className="jumbotron-header">
               Vel voluptatem quos praesentium blanditiis nesciunt ut maxime
@@ -26,22 +25,20 @@ export class Home extends Component {
               </Button>
             </div>
           </div>
-          <div className="col-md-6  jumbotron-img-wrapper">
-            <img src={image} alt="" />
-          </div>
+          <div className="col-md-6  jumbotron-img-wrapper" />
         </div>
       </HomeStyle>
     );
   }
 }
-const mapStatesToProps = (states) => {
+const mapStatesToProps = states => {
   return {};
 };
-const mapDispatchWithProps = (dispatch) => {
+const mapDispatchWithProps = dispatch => {
   return {};
 };
 
 export default connect(
   mapStatesToProps,
-  mapDispatchWithProps,
+  mapDispatchWithProps
 )(Home);

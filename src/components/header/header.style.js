@@ -1,21 +1,23 @@
-import styled from 'styled-components';
-const primaryBGColor = '#5e942d';
-const primaryTextColor = '#000000b8';
+import styled from "styled-components";
+const primaryBGColor = "#5e942d";
+const primaryTextColor = "#000000b8";
 
 export const Header = styled.header`
   width: 100%;
   display: flex;
   justify-content: center;
-  position: fixed;
+  position: absolute;
   height: 100px;
   top: 0;
   color: ${primaryTextColor};
-  background: white;
   z-index: 1;
 
   .navbar-brand {
-    font-size: 22px;
-    font-weight: 400;
+    font-size: 25px;
+    font-weight: bold;
+    background: white;
+    color: ${primaryBGColor};
+    padding: 5px;
   }
   .header {
     width: 90%;

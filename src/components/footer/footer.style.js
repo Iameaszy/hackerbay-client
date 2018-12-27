@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const Footer = styled.footer`
-  position: fixed;
   width: 100%;
-  bottom: 0;
   text-align: center;
   font-size: 14px;
   font-weight: 400;
