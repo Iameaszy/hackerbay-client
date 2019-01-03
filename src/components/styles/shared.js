@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
 export const SharedStyle = styled.section`
-  width: 90%;
+  width: 100%;
   margin: auto;
 `;

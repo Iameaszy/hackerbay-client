@@ -1,14 +1,14 @@
-import React from 'react';
-import { Button } from './../buttons/button.style';
-import { Header as HeaderStyle } from './header.style';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { Button } from "./../buttons/button.style";
+import { Header as HeaderStyle } from "./header.style";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      navLists: ['Home', 'Pricing', 'Our Service', 'Features', 'Contact'],
+      navLists: ["Home", "Recent Projects", "Contact", "Blog"],
       active: 0,
-      navMobile: false,
+      navMobile: false
     };
     this.handleListClick = this.handleListClick.bind(this);
   }
@@ -47,7 +47,7 @@ export class Header extends React.Component {
                         this.handleListClick(ind);
                       }}
                       className={`nav-mobile-item ${
-                        ind === active ? 'active' : ''
+                        ind === active ? "active" : ""
                       }`}>
                       {li}
                     </li>
@@ -65,14 +65,14 @@ export class Header extends React.Component {
                   onClick={() => {
                     this.handleListClick(ind);
                   }}
-                  className={`nav-item ${ind === active ? 'active' : ''}`}>
+                  className={`nav-item ${ind === active ? "active" : ""}`}>
                   {li}
                 </li>
               );
             })}
           </ul>
           <div>
-            <Button>Login</Button>
+            <Button color={""}>View my works</Button>
           </div>
         </div>
       </HeaderStyle>

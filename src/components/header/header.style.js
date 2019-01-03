@@ -1,5 +1,5 @@
 import styled from "styled-components";
-const primaryBGColor = "#5e942d";
+const primaryBGColor = "blueviolet";
 const primaryTextColor = "#000000b8";
 
 export const Header = styled.header`
@@ -15,9 +15,10 @@ export const Header = styled.header`
   .navbar-brand {
     font-size: 25px;
     font-weight: bold;
-    background: white;
-    color: ${primaryBGColor};
+    color: white;
+    background: ${primaryBGColor};
     padding: 5px;
+    cursor: default;
   }
   .header {
     width: 90%;
@@ -32,7 +33,8 @@ export const Header = styled.header`
     list-style: none;
     display: flex;
     margin: 0;
-    width: 40%;
+    width: 30%;
+    color: white;
     justify-content: space-around;
     @media (max-width: 760px) {
       display: none;
@@ -49,8 +51,14 @@ export const Header = styled.header`
   }
 
   button {
+    color: white;
+    background: ${primaryBGColor};
+    border: navy;
+    padding: 9px 25px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 0px 2px;
     &:hover {
-      background: green;
+      background: #6b08c7;
     }
     @media (max-width: 760px) {
       background: white;
